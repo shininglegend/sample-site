@@ -1,0 +1,168 @@
+{
+  "books": [
+    {
+      "name": "Matthew",
+      "file": "Matthew.json",
+      "nodes": 6013,
+      "edges": 13007
+    },
+    {
+      "name": "Mark",
+      "file": "Mark.json",
+      "nodes": 4054,
+      "edges": 7536
+    },
+    {
+      "name": "Luke",
+      "file": "Luke.json",
+      "nodes": 5258,
+      "edges": 10235
+    },
+    {
+      "name": "John",
+      "file": "John.json",
+      "nodes": 4455,
+      "edges": 9360
+    },
+    {
+      "name": "Acts",
+      "file": "Acts.json",
+      "nodes": 5556,
+      "edges": 11810
+    },
+    {
+      "name": "Romans",
+      "file": "Romans.json",
+      "nodes": 4059,
+      "edges": 10012
+    },
+    {
+      "name": "1 Corinthians",
+      "file": "1_Corinthians.json",
+      "nodes": 3447,
+      "edges": 7820
+    },
+    {
+      "name": "2 Corinthians",
+      "file": "2_Corinthians.json",
+      "nodes": 2857,
+      "edges": 7314
+    },
+    {
+      "name": "Galatians",
+      "file": "Galatians.json",
+      "nodes": 1962,
+      "edges": 4191
+    },
+    {
+      "name": "Ephesians",
+      "file": "Ephesians.json",
+      "nodes": 2422,
+      "edges": 5436
+    },
+    {
+      "name": "Philippians",
+      "file": "Philippians.json",
+      "nodes": 1816,
+      "edges": 3868
+    },
+    {
+      "name": "Colossians",
+      "file": "Colossians.json",
+      "nodes": 1840,
+      "edges": 3929
+    },
+    {
+      "name": "1 Thessalonians",
+      "file": "1_Thessalonians.json",
+      "nodes": 1645,
+      "edges": 4034
+    },
+    {
+      "name": "2 Thessalonians",
+      "file": "2_Thessalonians.json",
+      "nodes": 1200,
+      "edges": 2496
+    },
+    {
+      "name": "1 Timothy",
+      "file": "1_Timothy.json",
+      "nodes": 2038,
+      "edges": 4849
+    },
+    {
+      "name": "2 Timothy",
+      "file": "2_Timothy.json",
+      "nodes": 1558,
+      "edges": 3356
+    },
+    {
+      "name": "Titus",
+      "file": "Titus.json",
+      "nodes": 1044,
+      "edges": 2231
+    },
+    {
+      "name": "Philemon",
+      "file": "Philemon.json",
+      "nodes": 588,
+      "edges": 876
+    },
+    {
+      "name": "Hebrews",
+      "file": "Hebrews.json",
+      "nodes": 3491,
+      "edges": 8256
+    },
+    {
+      "name": "James",
+      "file": "James.json",
+      "nodes": 2065,
+      "edges": 4352
+    },
+    {
+      "name": "1 Peter",
+      "file": "1_Peter.json",
+      "nodes": 2151,
+      "edges": 4845
+    },
+    {
+      "name": "2 Peter",
+      "file": "2_Peter.json",
+      "nodes": 1302,
+      "edges": 2509
+    },
+    {
+      "name": "1 John",
+      "file": "1_John.json",
+      "nodes": 1451,
+      "edges": 3226
+    },
+    {
+      "name": "2 John",
+      "file": "2_John.json",
+      "nodes": 591,
+      "edges": 880
+    },
+    {
+      "name": "3 John",
+      "file": "3_John.json",
+      "nodes": 713,
+      "edges": 1067
+    },
+    {
+      "name": "Jude",
+      "file": "Jude.json",
+      "nodes": 756,
+      "edges": 1144
+    },
+    {
+      "name": "Revelation",
+      "file": "Revelation.json",
+      "nodes": 3668,
+      "edges": 9467
+    }
+  ],
+  "total_nodes": 68000,
+  "total_edges": 148106
+}

@@ -1,12 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample HTML Page</title>
+  <meta charset="UTF-8" />
+  <title>Scripture Cross-Reference Graph · shininglegend.xyz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "sl-accent": "#facc15",
+          },
+        },
+      },
+    };
+  </script>
 </head>
-<body>
-    <h1>Welcome to the Sample HTML Page</h1>
-    <p>This is a simple HTML document structure.</p>
+<body class="min-h-screen bg-slate-950 text-slate-100">
+  <!-- Hero Section -->
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-4xl">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <span class="h-4 w-4 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-400 to-amber-500 shadow-[0_0_25px_rgba(250,204,21,0.9)]"></span>
+          <h1 class="text-2xl sm:text-3xl md:text-4xl tracking-[0.25em] uppercase text-slate-100 font-medium">
+            Scripture Graph
+          </h1>
+        </div>
+        <p class="text-sm sm:text-base text-slate-400 tracking-[0.22em] uppercase">
+          Visualizing intertextual connections in the New Testament
+        </p>
+      </div>
+
+      <!-- Main Card -->
+      <div class="bg-slate-900/80 border border-slate-700/70 rounded-3xl shadow-2xl shadow-slate-950/80 backdrop-blur-xl p-8 md:p-10">
+        <div class="space-y-8">
+          <!-- Description -->
+          <div>
+            <h2 class="text-lg font-semibold text-slate-100 mb-3">About This Project</h2>
+            <p class="text-slate-300 leading-relaxed mb-4">
+              This experimental visualization maps cross-references from the 
+              <span class="text-yellow-400 font-medium">Treasury of Scripture Knowledge (TSK)</span> 
+              as an interactive network graph. Each New Testament verse becomes a node, connected 
+              to the Old Testament passages it references or echoes.
+            </p>
+            <p class="text-slate-300 leading-relaxed">
+              Explore the web of biblical intertextuality—discover patterns, clusters, and 
+              the rich tapestry of connections between testaments.
+            </p>
+          </div>
+
+          <!-- Features -->
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="rounded-xl border border-slate-700/80 bg-slate-900/80 p-5">
+              <div class="flex items-start gap-3">
+                <span class="text-2xl">🕸️</span>
+                <div>
+                  <h3 class="font-semibold text-slate-100 mb-1">Interactive Graph</h3>
+                  <p class="text-sm text-slate-400">
+                    Explore connections with zoom, pan, and click interactions
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-700/80 bg-slate-900/80 p-5">
+              <div class="flex items-start gap-3">
+                <span class="text-2xl">🔍</span>
+                <div>
+                  <h3 class="font-semibold text-slate-100 mb-1">Search & Filter</h3>
+                  <p class="text-sm text-slate-400">
+                    Find specific verses or filter by book and testament
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-700/80 bg-slate-900/80 p-5">
+              <div class="flex items-start gap-3">
+                <span class="text-2xl">🎨</span>
+                <div>
+                  <h3 class="font-semibold text-slate-100 mb-1">Visual Clustering</h3>
+                  <p class="text-sm text-slate-400">
+                    Color-coded by testament and book for easy navigation
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-700/80 bg-slate-900/80 p-5">
+              <div class="flex items-start gap-3">
+                <span class="text-2xl">📊</span>
+                <div>
+                  <h3 class="font-semibold text-slate-100 mb-1">Network Analysis</h3>
+                  <p class="text-sm text-slate-400">
+                    See which passages are most referenced and interconnected
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="text-center pt-4">
+            <a 
+              href="graph.html" 
+              class="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-400 px-8 py-4 text-sm font-bold uppercase tracking-[0.22em] text-slate-900 shadow-[0_0_30px_rgba(250,204,21,0.8)] hover:shadow-[0_0_40px_rgba(250,204,21,1)] transition-all duration-300"
+            >
+              <span>Explore the Graph</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Data Info -->
+          <div class="pt-6 border-t border-slate-800/80">
+            <p class="text-xs text-slate-500 text-center tracking-[0.18em] uppercase">
+              Data extracted from SWORD Project's TSK module
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-8 text-center">
+        <p class="text-xs tracking-[0.22em] uppercase text-slate-500">
+          shininglegend.xyz · experimental scripture visualization
+        </p>
+      </footer>
+    </div>
+  </div>
 </body>
 </html>

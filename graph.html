@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scripture Cross-Reference Network · Interactive Graph</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/force-graph@1.43.5/dist/force-graph.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "sl-accent": "#facc15",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    
+    /* Graph container */
+    #graph-container { 
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    
+    /* Loading overlay */
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(2, 6, 23, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .pulse-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #facc15;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Tooltip */
+    .graph-tooltip {
+      position: absolute;
+      padding: 10px 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      border-radius: 8px;
+      color: #f1f5f9;
+      font-size: 13px;
+      pointer-events: none;
+      z-index: 50;
+      max-width: 280px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+    }
+    
+    .graph-tooltip h3 {
+      font-weight: 600;
+      color: #facc15;
+      margin-bottom: 6px;
+    }
+    
+    .graph-tooltip .stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 2px 0;
+    }
+    
+    .graph-tooltip .stat-label {
+      color: #94a3b8;
+    }
+    
+    .graph-tooltip .stat-value {
+      color: #f1f5f9;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 overflow-hidden">
+  <!-- Main Container -->
+  <div class="relative w-screen h-screen">
+    <!-- Graph Container -->
+    <div id="graph-container"></div>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="pulse-ring mb-6"></div>
+      <h2 class="text-xl font-semibold text-slate-100 mb-2">Loading Scripture Graph</h2>
+      <p id="loading-status" class="text-slate-400 text-sm">Fetching cross-reference data...</p>
+    </div>
+    
+    <!-- Header UI -->
+    <div class="absolute top-0 left-0 right-0 p-4 pointer-events-none z-10">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <!-- Title & Back Button -->
+        <div class="pointer-events-auto">
+          <div class="flex items-center gap-3 mb-2">
+            <a href="index.html" class="flex items-center gap-2 text-slate-400 hover:text-yellow-400 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+              </svg>
+            </a>
+            <span class="h-3 w-3 rounded-full bg-gradient-to-br from-yellow-200 via-yellow-400 to-amber-500 shadow-[0_0_15px_rgba(250,204,21,0.7)]"></span>
+            <h1 class="text-lg tracking-[0.15em] uppercase text-slate-100 font-medium">Scripture Graph</h1>
+          </div>
+          
+          <!-- Breadcrumb / Current View -->
+          <div id="breadcrumb" class="flex items-center gap-2 text-sm">
+            <span class="text-slate-400">Viewing:</span>
+            <span id="current-view" class="text-yellow-400 font-medium">All Chapters</span>
+            <button id="back-btn" class="hidden ml-2 px-2 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded border border-slate-600 transition-colors">
+              ← Back to Chapters
+            </button>
+          </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-3 pointer-events-auto">
+          <!-- Search -->
+          <div class="relative">
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Search chapters..."
+              class="w-48 px-3 py-2 pl-9 text-sm bg-slate-900/90 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500/50 text-slate-100 placeholder-slate-500"
+            />
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          
+          <!-- Testament Filter -->
+          <select id="testament-filter" class="px-3 py-2 text-sm bg-slate-900/90 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500/50 text-slate-100">
+            <option value="all">All Testaments</option>
+            <option value="NT">New Testament</option>
+            <option value="OT">Old Testament</option>
+          </select>
+          
+          <!-- Weight Threshold -->
+          <div class="flex items-center gap-2">
+            <label class="text-xs text-slate-400">Min weight:</label>
+            <input 
+              type="range" 
+              id="weight-threshold" 
+              min="1" 
+              max="15" 
+              value="1"
+              class="w-20 accent-yellow-400"
+            />
+            <span id="weight-value" class="text-xs text-slate-300 w-6">1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Stats Panel -->
+    <div class="absolute bottom-4 left-4 pointer-events-auto z-10">
+      <div class="bg-slate-900/90 border border-slate-700 rounded-xl p-4 backdrop-blur-sm">
+        <div class="text-xs text-slate-400 uppercase tracking-wider mb-3">Graph Statistics</div>
+        <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+          <div>
+            <span class="text-slate-400">Nodes:</span>
+            <span id="stat-nodes" class="text-slate-100 font-medium ml-1">-</span>
+          </div>
+          <div>
+            <span class="text-slate-400">Links:</span>
+            <span id="stat-links" class="text-slate-100 font-medium ml-1">-</span>
+          </div>
+          <div>
+            <span id="stat-label-1" class="text-slate-400">NT:</span>
+            <span id="stat-nt" class="text-yellow-400 font-medium ml-1">-</span>
+          </div>
+          <div>
+            <span id="stat-label-2" class="text-slate-400">OT:</span>
+            <span id="stat-ot" class="text-blue-400 font-medium ml-1">-</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Legend -->
+    <div id="legend-panel" class="absolute bottom-4 right-4 pointer-events-auto z-10">
+      <div class="bg-slate-900/90 border border-slate-700 rounded-xl p-4 backdrop-blur-sm">
+        <div class="text-xs text-slate-400 uppercase tracking-wider mb-3">Legend</div>
+        <div id="legend-content" class="space-y-2 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+            <span class="text-slate-300">New Testament</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-blue-400"></span>
+            <span class="text-slate-300">Old Testament</span>
+          </div>
+          <div class="flex items-center gap-2 pt-2 border-t border-slate-700">
+            <span class="w-6 h-0.5 bg-slate-500"></span>
+            <span class="text-slate-400 text-xs">Link thickness = connection strength</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tooltip -->
+    <div id="tooltip" class="graph-tooltip hidden"></div>
+    
+    <!-- Instructions overlay (first visit) -->
+    <div id="instructions" class="absolute inset-0 bg-slate-950/80 flex items-center justify-center z-40 backdrop-blur-sm">
+      <div class="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-md mx-4 text-center">
+        <div class="text-4xl mb-4">🕸️</div>
+        <h2 class="text-xl font-semibold text-slate-100 mb-4">Welcome to Scripture Graph</h2>
+        <div class="text-slate-300 text-sm space-y-3 text-left mb-6">
+          <p><strong class="text-yellow-400">Pan:</strong> Click and drag the background</p>
+          <p><strong class="text-yellow-400">Zoom:</strong> Scroll or pinch</p>
+          <p><strong class="text-yellow-400">Hover:</strong> See chapter details</p>
+          <p><strong class="text-yellow-400">Click:</strong> Drill down to verse connections</p>
+          <p><strong class="text-yellow-400">Search:</strong> Find specific chapters</p>
+        </div>
+        <button id="dismiss-instructions" class="px-6 py-2 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-medium rounded-lg transition-colors">
+          Start Exploring
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="graph.js"></script>
+</body>
+</html>
