@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShieldBot — Privacy Policy</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2328;
+      --muted: #59636e;
+      --border: #d1d9e0;
+      --accent: #0969da;
+      --code-bg: #f0f2f4;
+      --table-stripe: #f6f8fa;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --fg: #e6edf3;
+        --muted: #9198a1;
+        --border: #30363d;
+        --accent: #4493f8;
+        --code-bg: #1a1f26;
+        --table-stripe: #161b22;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 5rem;
+    }
+    h1 { font-size: 2rem; line-height: 1.25; margin: 0 0 .5rem; }
+    h2 {
+      font-size: 1.35rem;
+      margin: 2.5rem 0 .75rem;
+      padding-bottom: .3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 .5rem; }
+    p, li { color: var(--fg); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { padding-left: 1.4rem; }
+    li { margin: .3rem 0; }
+    code {
+      background: var(--code-bg);
+      padding: .15em .4em;
+      border-radius: 5px;
+      font: .875em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .updated { color: var(--muted); font-size: .95rem; margin: 0 0 2rem; }
+    .lede { font-size: 1.05rem; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: .95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: .55rem .75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--table-stripe); }
+    tbody tr:nth-child(even) { background: var(--table-stripe); }
+    .table-wrap { overflow-x: auto; }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy — ShieldBot</h1>
+    <p class="updated"><strong>Last updated:</strong> 2026-07-22</p>
+
+    <p class="lede">ShieldBot (“the bot”, “we”, “us”) is a Discord moderation and logging bot. This policy explains what personal data the bot collects, why, how long it is kept, who it is shared with, and the rights you have over it.</p>
+
+    <p>By adding ShieldBot to a Discord server, or by remaining in a server where it is installed, you and the server’s administrators agree to the handling of data described below.</p>
+
+    <h2>Who is responsible for your data</h2>
+    <ul>
+      <li><strong>Bot operator / data controller:</strong> the individual or organisation running this instance of ShieldBot and holding its bot token.</li>
+      <li><strong>Server administrators (per-server controllers):</strong> the administrators of each Discord server (“guild”) that installs the bot decide which logging, moderation, and AI features are enabled and where logs are sent. They are jointly responsible for how the bot is used in their server.</li>
+      <li><strong>Contact:</strong> If you are using ShieldBot with User ID 1271674557073199175 on Discord, you may contact <a href="mailto:privacy@shininglegend.xyz">privacy@shininglegend.xyz</a> for help with privacy concerns. Otherwise, you are responsible to obtain the contact information of the data controller yourself. Check with the server administrators — they will know who the bot operator is.</li>
+    </ul>
+    <p>If you self-host ShieldBot, <strong>you</strong> are the data controller for your instance and should adapt this policy (especially the contact details and any retention changes) accordingly.</p>
+
+    <h2>What data we process</h2>
+    <p>ShieldBot only receives data through Discord and only acts on servers where it has been installed. The data below is grouped by feature. Most features are <strong>opt-in per server</strong> and configured by that server’s administrators; the AI features are additionally <strong>opt-in per user</strong>.</p>
+
+    <h3>1. Configuration data (always stored)</h3>
+    <p>Stored in a local SQLite database for the bot to function:</p>
+    <ul>
+      <li><strong>Discord identifiers:</strong> server (guild) IDs, channel IDs, role IDs, and — where relevant to a feature — user IDs.</li>
+      <li><strong>Server settings:</strong> logging channels, automod keyword filters and weights, exempt/isolation roles, ignored channels, ticket configuration, and a logging <strong>webhook URL</strong> you provide.</li>
+    </ul>
+
+    <h3>2. Moderation &amp; logging data</h3>
+    <p>When a server enables logging, the bot captures moderation-relevant activity and sends it to the server’s configured log channel or webhook. This can include:</p>
+    <ul>
+      <li><strong>Message deletions:</strong> the message author, channel, who deleted it (where known), the deletion reason, the <strong>full message content</strong>, and any <strong>attachments</strong> (re-downloaded and re-posted into the log). Bulk deletions produce a text transcript of the affected messages.</li>
+      <li><strong>Message edits:</strong> the author, channel, and the <strong>before/after content</strong>.</li>
+      <li><strong>Member activity:</strong> joins (with account-creation date, the invite/inviter used, member count), leaves, kicks, and bans (with account age, join date, the responsible moderator, reason, and the member’s roles at the time).</li>
+      <li><strong>Moderation actions:</strong> bans, timeouts, and manual moderation log entries (target user, moderator, reason).</li>
+    </ul>
+    <p>To make delete/edit logging possible, recent message content and metadata are held <strong>temporarily in memory</strong> (not written to the database) for up to <strong>24 hours</strong> and are lost when the bot restarts.</p>
+    <p>Log output is delivered into the Discord channels/webhooks chosen by each server’s administrators. Once delivered, that content lives in Discord under Discord’s control and the server’s control, not the bot’s database.</p>
+
+    <h3>3. Support tickets</h3>
+    <p>If a server uses the ticketing feature, the database stores: the ticket opener’s user ID, the assigned/closing/deleting staff user IDs, the ticket status, and any <strong>rating and free-text feedback comment</strong> you submit. Deleting a ticket marks it closed but retains the record.</p>
+
+    <h3>4. Role backups (isolation feature)</h3>
+    <p>When the isolation/restore feature removes a user’s roles, the removed <strong>role IDs</strong> are stored against that user’s ID so they can be restored, and are deleted once the roles are restored.</p>
+
+    <h3>5. AI assistant features (double opt-in)</h3>
+    <p>ShieldBot includes an optional AI assistant powered by <strong>Anthropic</strong> (Claude). It is <strong>off by default</strong> and only responds when <strong>all</strong> of the following are true: the server has enabled AI, the bot operator has approved AI for that server, <strong>and the individual user has opted in</strong>. Users who have not opted in receive a one-time disclosure and get no AI reply; their messages are redacted before any AI processing.</p>
+    <p>When an opted-in user mentions the bot:</p>
+    <ul>
+      <li><strong>Sent to Anthropic:</strong> a transcript of up to the 50 most recent channel messages (trimmed to ~6,000 characters), containing display names/usernames and message content; the mentioning user’s message, nickname, and server roles. Messages from users who have not opted in, or who are AI-banned, are redacted before sending. Raw user IDs are replaced with display names.</li>
+      <li><strong>Stored in the database (<code>ai_logs</code>):</strong> the bot’s <strong>own AI response text</strong>, the server and channel names/IDs, the responding user’s ID, and a message link. This is retained for <strong>safety review</strong> and auto-deleted after <strong>30 days</strong>.</li>
+      <li><strong>AI memory (separate second opt-in):</strong> if you additionally opt in to memory, the bot may store short factual notes and style preferences about you (capped in number and length) to personalise replies. The extraction process is instructed to exclude special-category data (e.g. religion, health, sexuality, race, politics, precise location) and information about third parties. Memory entries <strong>expire after 30 days</strong>.</li>
+    </ul>
+    <p>Anthropic processes this data as our sub-processor under Anthropic’s own privacy terms and, per those terms, does <strong>not</strong> use it to train models. See <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>.</p>
+
+    <h3>6. Diagnostics</h3>
+    <p>Operational errors are written to local log files and may be reported to a private developer error channel. These reports can include contextual identifiers (such as a user tag or ID) needed to diagnose the problem.</p>
+
+    <h2>Data we do <strong>not</strong> collect</h2>
+    <ul>
+      <li>We do not collect payment information.</li>
+      <li>We do not sell or rent personal data to anyone.</li>
+      <li>We do not use your data for advertising or profiling beyond the optional AI memory feature described above.</li>
+      <li>Message content is not sent to any AI provider except for opted-in users who mention the bot, as described in section 5.</li>
+    </ul>
+
+    <h2>Legal bases (GDPR)</h2>
+    <p>Where the GDPR applies, we rely on:</p>
+    <ul>
+      <li><strong>Legitimate interests</strong> — server moderation, logging, abuse prevention, and keeping the bot secure and functional.</li>
+      <li><strong>Consent</strong> — the AI assistant and AI memory features, which require explicit per-user opt-in and can be withdrawn at any time.</li>
+      <li><strong>Contract / legitimate interests</strong> — providing the ticketing and configuration features requested by the server.</li>
+    </ul>
+
+    <h2>Retention</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Retention</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Server/feature configuration</td><td>Until changed or the bot is removed from the server</td></tr>
+          <tr><td>Cached message content (in memory)</td><td>Up to 24 hours; cleared on restart</td></tr>
+          <tr><td>Delivered logs (in Discord channels/webhooks)</td><td>Controlled by Discord and the server, not the bot</td></tr>
+          <tr><td>Support tickets</td><td>Retained until manually removed by the operator</td></tr>
+          <tr><td>Role backups (isolation)</td><td>Until roles are restored</td></tr>
+          <tr><td>AI response logs (<code>ai_logs</code>)</td><td>30 days, then auto-deleted</td></tr>
+          <tr><td>AI memory entries</td><td>30 days, then auto-deleted (or sooner on request)</td></tr>
+          <tr><td>AI consent records</td><td>Until you change them</td></tr>
+          <tr><td>Local error/diagnostic logs</td><td>Kept for troubleshooting; not automatically rotated</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Your rights and how to exercise them</h2>
+    <p>Depending on your jurisdiction (including under the GDPR and UK GDPR), you may have the right to access, correct, delete, restrict, or object to the processing of your personal data, and to withdraw consent.</p>
+    <p>You can exercise several of these directly through the bot:</p>
+    <ul>
+      <li><code>/ai optin</code> / <code>/ai enable</code> — opt in to the AI assistant.</li>
+      <li><code>/ai optout</code> / <code>/ai disable</code> — opt out of the AI assistant; this also disables AI memory and deletes your stored AI memory.</li>
+      <li><code>/memory enable</code> / <code>/memory disable</code> — control AI memory specifically.</li>
+      <li><code>/memory forget</code> — delete all of your stored AI memory immediately.</li>
+      <li><code>/ai logs</code>, <code>/ai view</code>, <code>/ai status</code> — see what has been logged and remembered about you.</li>
+    </ul>
+    <p>For requests the commands don’t cover — including deletion of your AI response logs (<code>ai_logs</code>) before the 30-day window, or any other access/erasure request — open a <strong>support ticket</strong> in the relevant server or contact the operator at the address above. We aim to respond within a reasonable time and, where required, within one month.</p>
+    <p>Note that some data (such as delivered moderation logs sitting in Discord channels) is under the control of Discord and the server’s administrators; requests about that data may need to be directed to them.</p>
+
+    <h2>Data storage and security</h2>
+    <p>Data is stored in a local SQLite database on the operator’s infrastructure. Access to the bot’s data and administrative/developer commands is restricted to the bot operator. No system can be guaranteed perfectly secure, but we take reasonable measures to protect the data we hold.</p>
+
+    <h2>Children</h2>
+    <p>Discord requires users to meet a minimum age (13, or higher in some regions). ShieldBot is not intended for anyone below Discord’s minimum age, and we do not knowingly process such users’ data.</p>
+
+    <h2>Third parties</h2>
+    <ul>
+      <li><strong>Discord</strong> — the platform the bot operates on. Your use is also governed by Discord’s Privacy Policy: <a href="https://discord.com/privacy">discord.com/privacy</a>.</li>
+      <li><strong>Anthropic</strong> — AI sub-processor for the optional AI features only: <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>.</li>
+    </ul>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy as the bot evolves. Material changes will be reflected by updating the “Last updated” date above. Continued use of the bot after a change constitutes acceptance of the revised policy.</p>
+
+    <footer>Privacy Policy for ShieldBot · Last updated 2026-07-22</footer>
+  </main>
+</body>
+</html>
