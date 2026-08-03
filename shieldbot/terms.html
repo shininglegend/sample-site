@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShieldBot — Terms of Service</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2328;
+      --muted: #59636e;
+      --border: #d1d9e0;
+      --accent: #0969da;
+      --code-bg: #f0f2f4;
+      --table-stripe: #f6f8fa;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --fg: #e6edf3;
+        --muted: #9198a1;
+        --border: #30363d;
+        --accent: #4493f8;
+        --code-bg: #1a1f26;
+        --table-stripe: #161b22;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 5rem;
+    }
+    h1 { font-size: 2rem; line-height: 1.25; margin: 0 0 .5rem; }
+    h2 {
+      font-size: 1.35rem;
+      margin: 2.5rem 0 .75rem;
+      padding-bottom: .3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 { font-size: 1.1rem; margin: 1.75rem 0 .5rem; }
+    p, li { color: var(--fg); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { padding-left: 1.4rem; }
+    li { margin: .3rem 0; }
+    code {
+      background: var(--code-bg);
+      padding: .15em .4em;
+      border-radius: 5px;
+      font: .875em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .updated { color: var(--muted); font-size: .95rem; margin: 0 0 2rem; }
+    .lede { font-size: 1.05rem; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: .95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: .55rem .75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--table-stripe); }
+    tbody tr:nth-child(even) { background: var(--table-stripe); }
+    .table-wrap { overflow-x: auto; }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Terms of Service — ShieldBot</h1>
+    <p class="updated"><strong>Last updated:</strong> 2026-08-02</p>
+
+    <p class="lede">These Terms of Service (“Terms”) govern your use of ShieldBot (“the bot”, “we”, “us”), a Discord moderation and logging bot. They apply to everyone who interacts with the bot: the administrators who install it, the staff who operate it, and the members of any server where it is present.</p>
+
+    <p>By adding ShieldBot to a Discord server, using any of its commands, or remaining in a server where it is installed, you agree to these Terms. If you do not agree, remove the bot from your server or stop using it.</p>
+
+    <p>These Terms work alongside our <a href="privacy.html">Privacy Policy</a>, which explains what data the bot processes and why. Where the Privacy Policy describes data handling, it takes precedence over anything said here about the same subject.</p>
+
+    <h2>Who these Terms are between</h2>
+    <ul>
+      <li><strong>Bot operator:</strong> the individual or organisation running this instance of ShieldBot and holding its bot token. They provide the service described here.</li>
+      <li><strong>Server administrators:</strong> the administrators of each Discord server (“guild”) that installs the bot. They choose which features are enabled, who can use them, and where logs are sent.</li>
+      <li><strong>Users:</strong> anyone who interacts with the bot or is present in a server where it is installed.</li>
+      <li><strong>Contact:</strong> If you are using ShieldBot with User ID 1271674557073199175 on Discord, you may contact <a href="mailto:privacy@shininglegend.xyz">privacy@shininglegend.xyz</a>. Otherwise, the operator of your instance is your point of contact — check with your server administrators.</li>
+    </ul>
+    <p>These Terms cover the instance we operate. If you have been separately licensed to run your own instance, <strong>you</strong> are the operator of it, these Terms do not oblige us to provide you anything, and you are responsible for your own users — see <a href="#software">The software itself</a> below.</p>
+
+    <h2>Eligibility</h2>
+    <ul>
+      <li>You must meet Discord’s minimum age requirement (13, or higher in some regions) to use ShieldBot.</li>
+      <li>Your use of Discord itself remains governed by the <a href="https://discord.com/terms">Discord Terms of Service</a> and <a href="https://discord.com/guidelines">Community Guidelines</a>. Nothing here overrides them, and a breach of Discord’s rules is also a breach of these Terms.</li>
+      <li>You must not use the bot if the operator has previously banned you from it, or if doing so would break the law that applies to you.</li>
+    </ul>
+
+    <h2 id="description">What ShieldBot is for</h2>
+    <p>The following describes what the bot is <em>designed</em> to do, so you know what you are installing. No item below is guaranteed to exist, remain available, or behave in any particular way, and nothing in this section is a warranty or a commitment to provide a feature. See <a href="#disclaimer">Disclaimer of warranties</a>.</p>
+    <p>ShieldBot is intended to provide moderation and logging tooling for Discord servers, which may include:</p>
+    <ul>
+      <li><strong>Moderation actions</strong> — bans, kicks, timeouts, purges, and manual moderation log entries.</li>
+      <li><strong>Audit logging</strong> — message deletions and edits, member joins and leaves, and moderation events, delivered to a channel or webhook of the server’s choosing.</li>
+      <li><strong>Isolation and role restore</strong> — temporarily removing a member’s roles and restoring them later.</li>
+      <li><strong>Automod filters</strong> — keyword filtering with configurable weights, exempt roles, and ignored channels.</li>
+      <li><strong>Support tickets</strong> — an interactive ticketing system with claiming, closing, and optional feedback.</li>
+      <li><strong>An optional AI assistant</strong> — off by default, subject to the additional terms below.</li>
+    </ul>
+    <p>Features are configured per server. Availability of any particular feature is at the operator’s discretion and may change at any time without notice.</p>
+
+    <h2>Responsibilities of server administrators</h2>
+    <p>If you install or configure ShieldBot in a server, you are responsible for how it is used there. In particular, you agree to:</p>
+    <ul>
+      <li><strong>Tell your members</strong> that the bot is installed and what it logs, and make our <a href="privacy.html">Privacy Policy</a> available to them. Where the law requires it, obtain any consent or provide any notice needed for the logging you enable.</li>
+      <li><strong>Configure logging destinations responsibly.</strong> Log channels and webhooks can contain deleted message content, attachments, and member details — restrict who can see them.</li>
+      <li><strong>Grant the bot only the permissions it needs</strong>, and keep any webhook URL you supply confidential.</li>
+      <li><strong>Restrict moderation commands</strong> to the staff who should have them, using the bot’s permission and role-override settings.</li>
+      <li><strong>Handle your members’ requests</strong> about data that has already been delivered into your channels — that content is under your and Discord’s control, not the bot’s.</li>
+      <li><strong>Comply with applicable law</strong>, including data-protection and workplace-monitoring rules that may apply to logging in your jurisdiction.</li>
+    </ul>
+
+    <h2>Acceptable use</h2>
+    <p>You may not use ShieldBot to:</p>
+    <ul>
+      <li>Break the law, or violate Discord’s Terms of Service, Community Guidelines, or Developer Terms.</li>
+      <li>Harass, stalk, dox, threaten, or surveil anyone, or covertly monitor members in a way they would not reasonably expect from a moderation bot.</li>
+      <li>Collect or redistribute other users’ personal data beyond what your server’s moderation genuinely requires.</li>
+      <li>Attack, overload, or interfere with the bot or the infrastructure it runs on — including spamming commands, deliberately triggering rate limits, or automating requests at abusive volume.</li>
+      <li>Attempt to gain unauthorised access to the bot, its database, its host, its error channel, or another server’s configuration or data.</li>
+      <li>Reverse engineer, tamper with, or bypass the bot’s permission checks, opt-in gates, or safety controls.</li>
+      <li>Impersonate the bot, the operator, or server staff, or misrepresent bot output as something it is not.</li>
+      <li>Resell the service, or present it as your own product, without the operator’s permission.</li>
+    </ul>
+
+    <h2>AI assistant terms</h2>
+    <p>ShieldBot includes an optional AI assistant powered by <strong>Anthropic</strong> (Claude). It is <strong>off by default</strong> and only responds when the server has enabled AI, the operator has approved AI for that server, <strong>and</strong> the individual user has opted in. If you use it, you additionally agree that:</p>
+    <ul>
+      <li><strong>Output may be wrong.</strong> AI responses are generated automatically and may be inaccurate, incomplete, outdated, or inappropriate. Do not rely on them for legal, medical, financial, safety, or other consequential decisions, and verify anything that matters.</li>
+      <li><strong>Output is not our advice or opinion.</strong> The operator does not review AI responses before they are sent and does not endorse them.</li>
+      <li><strong>Moderation decisions stay human.</strong> The assistant does not take moderation actions; a person remains responsible for every ban, kick, timeout, and filter decision in your server.</li>
+      <li><strong>You control your participation.</strong> You may opt in or out at any time with <code>/ai optin</code> and <code>/ai optout</code>, and control AI memory separately with <code>/memory enable</code>, <code>/memory disable</code>, and <code>/memory forget</code>.</li>
+      <li><strong>Don’t abuse it.</strong> You may not use the assistant to generate unlawful, harassing, or deliberately harmful content, to extract other members’ personal data, or to attempt to manipulate the bot into ignoring its instructions or safety controls.</li>
+      <li><strong>Anthropic’s terms apply too.</strong> Conversations sent to the assistant are processed by Anthropic as our sub-processor. See <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>.</li>
+      <li><strong>Logging for safety.</strong> The bot’s own AI responses are retained for 30 days for safety review, as described in the <a href="privacy.html">Privacy Policy</a>.</li>
+    </ul>
+    <p>The operator may withdraw AI access from a server or an individual user (an “AI ban”) at any time, including for abuse of the feature.</p>
+
+    <h2>Availability and changes to the service</h2>
+    <p>ShieldBot is provided free of charge and on a best-effort basis. We do not promise any level of uptime, response time, or data durability. The bot may be restarted, taken offline, rate-limited by Discord, or changed without notice, and features may be added, altered, or removed at any time.</p>
+    <p>In particular: cached message content is held in memory only and is lost on restart, so some deletions or edits may not be logged. Do not treat the bot’s logs as a complete or authoritative record.</p>
+
+    <h2>Suspension and termination</h2>
+    <ul>
+      <li><strong>You may leave at any time</strong> by removing the bot from your server. Removing it stops further processing; see the <a href="privacy.html">Privacy Policy</a> for what happens to data already stored.</li>
+      <li><strong>We may suspend or terminate access</strong> — for a user, a server, or entirely — at any time and without notice, particularly for breach of these Terms, abuse of the bot or its infrastructure, or where continuing would be unlawful or unsafe.</li>
+      <li><strong>Sections that should survive, survive.</strong> The disclaimer, limitation of liability, and acceptable-use provisions continue to apply after your access ends.</li>
+    </ul>
+
+    <h2 id="disclaimer">Disclaimer of warranties</h2>
+    <p>ShieldBot is provided <strong>“as is” and “as available”</strong>, without warranties of any kind, whether express or implied, including any implied warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. We do not warrant that the bot will be uninterrupted, error-free, secure, or that it will detect, log, or prevent any particular behaviour in your server.</p>
+    <p>The feature descriptions in <a href="#description">What ShieldBot is for</a> — and any other description of the bot in our documentation, support channels, or listings — are provided to explain the bot’s intended purpose. They are not statements of fact about its performance and do not create any express warranty. Where a description and this disclaimer appear to conflict, this disclaimer governs.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>To the fullest extent permitted by law, the operator is not liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of data, profits, goodwill, or server community, arising out of or relating to your use of ShieldBot — including missed or incomplete logs, mistaken moderation actions, exposure of logged content through a channel or webhook you configured, or reliance on AI output.</p>
+    <p>Because the bot is provided free of charge, the operator’s total aggregate liability to you for all claims relating to it is limited to <strong>the greater of the amount you paid for it (which is nothing) or USD $50</strong>.</p>
+    <p>Nothing in these Terms excludes liability that cannot lawfully be excluded, and some jurisdictions do not allow certain exclusions — in which case the exclusions above apply only to the extent permitted.</p>
+
+    <h2>Indemnity</h2>
+    <p>If you are a server administrator, you agree to indemnify and hold the operator harmless from claims, damages, and reasonable costs arising from your configuration or use of the bot in your server — for example, claims by your members about logging you enabled or moderation actions your staff took.</p>
+
+    <h2 id="software">The software itself</h2>
+    <p>These Terms grant you permission to <em>use</em> the hosted instance of ShieldBot that we operate. They grant you <strong>no rights in the software</strong>. The ShieldBot source code is not publicly released and is not offered under an open-source licence; all rights in it are reserved by its author.</p>
+    <p>Accordingly, you may not copy, modify, distribute, or run your own instance of ShieldBot except under a separate written licence from the author. If the source is published under a licence in future, that licence — not this section — will govern what you may do with the code.</p>
+
+    <h2>Privacy</h2>
+    <p>Our handling of personal data is described in the <a href="privacy.html">ShieldBot Privacy Policy</a>, which forms part of these Terms.</p>
+
+    <h2>Changes to these Terms</h2>
+    <p>We may update these Terms as the bot evolves. Material changes will be reflected by updating the “Last updated” date above. Continued use of the bot after a change constitutes acceptance of the revised Terms. If you do not accept a change, remove the bot from your server.</p>
+
+    <h2>General</h2>
+    <ul>
+      <li><strong>Severability:</strong> if any provision is held unenforceable, the rest remains in force.</li>
+      <li><strong>No waiver:</strong> not enforcing a provision on one occasion does not waive it.</li>
+      <li><strong>Entire agreement:</strong> these Terms and the Privacy Policy are the whole agreement between you and the operator regarding ShieldBot.</li>
+      <li><strong>No relationship:</strong> these Terms do not create a partnership, employment, or agency relationship, and ShieldBot is not affiliated with or endorsed by Discord Inc. or Anthropic.</li>
+      <li><strong>Governing law:</strong> these Terms are governed by the laws of the Commonwealth of Massachusetts, United States, without regard to its conflict-of-law rules.</li>
+      <li><strong>Venue:</strong> any dispute arising out of these Terms or your use of ShieldBot will be brought in the state or federal courts located in Massachusetts, and you and the operator consent to the personal jurisdiction of those courts.</li>
+      <li><strong>Local consumer rights:</strong> if you live outside Massachusetts, the two clauses above do not deprive you of the protection of any mandatory consumer-protection law of your own country or state that cannot be waived by agreement, and nothing here prevents you from bringing proceedings where such law entitles you to do so.</li>
+    </ul>
+
+    <footer>Terms of Service for ShieldBot · Last updated 2026-08-02</footer>
+  </main>
+</body>
+</html>
